@@ -1,0 +1,44 @@
+<?php
+namespace app\core;
+
+use app\core\Quiz;
+
+class View
+{
+
+    public $layout = 'layouts/main';
+
+    public static function url($route, $params = [])
+    {
+        return Quiz::app()->url($route, $params);
+    }
+
+    public function generate($view, $_data = null)
+    {
+        if (is_array($_data)) {
+            extract($_data, EXTR_PREFIX_SAME, 'data');
+        }
+
+        ob_start();
+        ob_implicit_flush(false);
+        require(ROOT . 'app/views/' . $view);
+        $content = ob_get_clean();
+
+        include ROOT . 'app/views/' . $this->layout . '.php';
+    }
+
+    public function getController()
+    {
+        return Quiz::app()->getController();
+    }
+
+    public function encode($text)
+    {
+        return htmlspecialchars($text, ENT_QUOTES, 'utf-8');
+    }
+
+    public function check($value)
+    {
+        return !empty($value) ? $value : null;
+    }
+}
