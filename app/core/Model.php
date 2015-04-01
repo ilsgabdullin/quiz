@@ -69,6 +69,8 @@ abstract class Model
     {
         if (!empty($this->_data[$property])) {
             return $this->_data[$property];
+        } else {
+            return null;
         }
     }
 
@@ -112,6 +114,11 @@ abstract class Model
         return $result;
     }
 
+    /**
+     * Находит запись по первичному ключу и возвращает модель с данными
+     * @param $id
+     * @throws \Exception
+     */
     public function findByPk($id)
     {
         if ($this->primaryKey != null) {
@@ -152,6 +159,8 @@ abstract class Model
             }
 
             return $result;
+        } else {
+            return false;
         }
     }
 
