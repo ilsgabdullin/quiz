@@ -27,7 +27,7 @@ class Quiz
         if (self::$_app == null)
             self::$_app = $app;
         else
-            throw new Exception('Приложение может быть создано только один раз!');
+            throw new \Exception('Приложение может быть создано только один раз!');
     }
 
     public static function run(Config $config)

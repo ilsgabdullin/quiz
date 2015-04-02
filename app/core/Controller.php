@@ -34,7 +34,7 @@ class Controller
     public function getViewPath($view)
     {
         if (!is_string($view))
-            return;
+            return false;
 
         if ($view[0] != '/')
             $view = $this->getId() . DIRECTORY_SEPARATOR . $view;
