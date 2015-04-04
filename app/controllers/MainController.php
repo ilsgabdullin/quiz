@@ -8,6 +8,7 @@ use app\models\Question;
 /**
  * Контроллер MainController.
  * @package app\controllers
+ * @author Ильсур Габдуллин <ilsgabdullin@gmail.com>
  */
 class MainController extends Controller
 {
