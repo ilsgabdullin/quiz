@@ -34,7 +34,7 @@ class Application
      */
     protected $db = null;
     /**
-     * @var Config доступ к конфигурации приложегния
+     * @var Config доступ к конфигурации приложения
      */
     protected $config;
     /**
