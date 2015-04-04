@@ -6,11 +6,23 @@ use app\core\Controller;
 use app\models\Poll;
 use app\models\PollForm;
 
+/**
+ * Контроллер PollController
+ * @package app\controllers
+ * @author Ильсур Габдуллин <ilsgabdullin@gmail.com>
+ */
 class PollController extends Controller
 {
-
+    /**
+     * @var string действие по умолчанию
+     */
     public $defaultAction = 'start';
 
+    /**
+     * Отображает форму опроса.
+     * Если нет активного опроса, то отображает сообщение.
+     * Если пользователь ответил на вопросы, то перенаправляет на страницу с результатами опроса.
+     */
     public function actionStart()
     {
         $model = Poll::getActivePoll();
@@ -37,12 +49,15 @@ class PollController extends Controller
         }
     }
 
+    /**
+     * Отображает результаты опроса.
+     * Если нет активного опроса, то перенаправляет на страницу 'poll/start'.
+     */
     public function actionResults()
     {
         $model = Poll::getActivePoll();
 
         if ($model) {
-
             $this->render('results', [
                 'model' => $model
             ]);
