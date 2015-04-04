@@ -164,5 +164,9 @@ abstract class Model
         }
     }
 
+    /**
+     * @todo написать валидаторы модели
+     * @return mixed
+     */
     public abstract function validate();
 }
