@@ -3,33 +3,43 @@ namespace app\core;
 
 use app\core\Application;
 
+/**
+ * Основный класс приложения Quiz
+ * @package app\core
+ * @author Ильсур Габдуллин <ilsgabdullin@gmail.com>
+ */
 class Quiz
 {
+    /**
+     * @var Application хранит экземпляр приложения
+     */
     private static $_app = null;
 
+    /**
+     * Конструктор.
+     */
     private function __construct()
     {
 
     }
 
-    private function __clone()
-    {
-
-    }
-
-    private function __wakeup()
-    {
-
-    }
-
+    /**
+     * @param Application $app экземпляр приложения
+     * @throws \Exception если повторно создается приложение
+     */
     public static function setApplication(Application $app)
     {
-        if (self::$_app == null)
+        if (self::$_app == null) {
             self::$_app = $app;
-        else
+        } else {
             throw new \Exception('Приложение может быть создано только один раз!');
+        }
     }
 
+    /**
+     * Запуск приложения.
+     * @param Config $config объект для работы с конфигурацией
+     */
     public static function run(Config $config)
     {
         if (self::$_app == null) {
@@ -37,11 +47,19 @@ class Quiz
         }
     }
 
+    /**
+     * Доступ к созданному объекту приложения.
+     * @return Application приложение
+     */
     public static function app()
     {
         return self::$_app;
     }
 
+    /**
+     * Автозагрузщик.
+     * @param string $className путь к классу
+     */
     public static function autoload($className)
     {
         $className = ltrim($className, '\\');
@@ -58,6 +76,25 @@ class Quiz
 
         require_once ROOT . $fileName;
     }
+
+    /**
+     * Клонирование.
+     */
+    private function __clone()
+    {
+
+    }
+
+    /**
+     * Восстановление из строки.
+     */
+    private function __wakeup()
+    {
+
+    }
 }
 
+/**
+ * Регистрируем автозагрузщик.
+ */
 spl_autoload_register('app\core\Quiz::autoload');
