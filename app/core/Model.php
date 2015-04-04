@@ -63,7 +63,7 @@ abstract class Model
     }
 
     /**
-     * @return static возвращает новый экземпляр класса
+     * @return static новый экземпляр класса
      */
     public static function model()
     {
